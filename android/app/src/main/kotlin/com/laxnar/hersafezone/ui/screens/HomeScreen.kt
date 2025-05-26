@@ -44,7 +44,7 @@ fun HomeScreen(navController: NavController) {
             )
             
             Button(
-                onClick = { navController.navigate("livemap") }
+                onClick = { navController.navigate("livemap/demo") }
             ) {
                 Text("Open Live Map")
             }
@@ -56,6 +56,10 @@ fun HomeScreen(navController: NavController) {
                     val result = sosService.trigger("harassment")
                     if (result.isSuccess) {
                         Toast.makeText(context, "SOS sent", Toast.LENGTH_SHORT).show()
+                        // Navigate to the SOS we just created
+                        result.getOrNull()?.let { sosId ->
+                            navController.navigate("livemap/$sosId")
+                        }
                     } else {
                         Toast.makeText(context, "Failed to send SOS", Toast.LENGTH_SHORT).show()
                     }

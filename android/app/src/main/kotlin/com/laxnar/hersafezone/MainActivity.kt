@@ -7,7 +7,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import com.laxnar.hersafezone.ui.HerSafeZoneApp
 import com.laxnar.hersafezone.ui.theme.HerSafeZoneTheme
 
@@ -20,6 +22,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val navController = rememberNavController()
+                    
+                    // Handle navigation from notification
+                    LaunchedEffect(Unit) {
+                        intent?.let { intentData ->
+                            val navigateTo = intentData.getStringExtra("navigate_to")
+                            val sosId = intentData.getStringExtra("sos_id")
+                            
+                            if (navigateTo == "livemap" && sosId != null) {
+                                navController.navigate("livemap/$sosId")
+                            }
+                        }
+                    }
+                    
                     HerSafeZoneApp()
                 }
             }
