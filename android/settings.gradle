@@ -1,0 +1,6 @@
+
+pluginManagement {
+    includeBuild('capacitor-cordova-android-plugins')
+}
+include ':app'
+include ':capacitor-cordova-android-plugins'
