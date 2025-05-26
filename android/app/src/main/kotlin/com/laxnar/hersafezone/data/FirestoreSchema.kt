@@ -1,4 +1,3 @@
-
 package com.laxnar.hersafezone.data
 
 object FirestoreSchema {
@@ -16,6 +15,7 @@ object FirestoreSchema {
         const val CREATED_AT = "createdAt"
         const val LAST_SEEN = "lastSeen"
         const val IS_ACTIVE = "isActive"
+        const val LOCATION = "location"
     }
     
     // SOS document fields
